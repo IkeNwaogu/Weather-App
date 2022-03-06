@@ -1,0 +1,49 @@
+﻿<Window x:Class="WeatherApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WeatherApp"
+        mc:Ignorable="d"
+        Title="" Height="720" Width="1280" ResizeMode="NoResize" 
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen">
+
+    <Border CornerRadius="8" BorderThickness="0">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="AntiqueWhite" Offset="0.0"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        <!--This is the foundational grid for the UI-->
+        <Grid x:Name="BaseGrid">
+            <Border Name="mask" Background="AntiqueWhite" CornerRadius="7"/>
+            <!--The ViewBox is a very useful control in WPF. If does nothing more than scale to fit the content to the available size. It does not resize the content, but it transforms it. This means that also all text sizes and line widths were scaled. Its about the same behavior 
+            as if you set the Stretch property on an Image or Path to Uniform.
+            Although it can be used to fit any type of control, it's often used for 2D graphics, 
+            or to fit a scalable part of a user interface into an screen area. -->
+            <Viewbox Name="customViewBox" Stretch="Fill">
+                <Image x:Name="sunnyday"  Grid.Row="0" Grid.Column="0" Stretch="Fill" Visibility="Visible" />
+            </Viewbox>
+            <!--Clipping mask used to give image rounded corners-->
+            <Grid.OpacityMask>
+                <VisualBrush Visual="{Binding ElementName=mask}"/>
+            </Grid.OpacityMask>
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="AntiqueWhite" Offset="0.0"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <Grid.RowDefinitions></Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            
+        </Grid>
+    </Border>
+</Window>
