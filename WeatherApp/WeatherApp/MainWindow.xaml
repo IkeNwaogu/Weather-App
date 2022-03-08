@@ -24,8 +24,12 @@
             as if you set the Stretch property on an Image or Path to Uniform.
             Although it can be used to fit any type of control, it's often used for 2D graphics, 
             or to fit a scalable part of a user interface into an screen area. -->
-            <Viewbox Name="customViewBox" Stretch="Fill">
-                <Image x:Name="sunnyday"  Grid.Row="0" Grid.Column="0" Stretch="Fill" Visibility="Visible" />
+            <Viewbox Name="imageViewBox" Grid.Row="0" Grid.Column="0" Stretch="Fill">
+                <Image x:Name="sunnyday" Visibility="Visible" />
+            </Viewbox>
+
+            <Viewbox Name="calendarViewBox" Grid.Row="0" Grid.Column="1" Stretch="Fill">
+                <Calendar Style="{DynamicResource CalendarStyle1}" Background="White"/>
             </Viewbox>
             <!--Clipping mask used to give image rounded corners-->
             <Grid.OpacityMask>
@@ -37,13 +41,14 @@
                 </LinearGradientBrush>
             </Grid.Background>
 
+
             <Grid.RowDefinitions></Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            
-            
+
+
         </Grid>
     </Border>
 </Window>
