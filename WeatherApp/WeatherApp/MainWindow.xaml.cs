@@ -26,7 +26,7 @@ namespace WeatherApp
         public MainWindow()
         {
             InitializeComponent();
-            Uri imageUri = new Uri("\\SlideImages\\sunboy.jpg", UriKind.RelativeOrAbsolute);
+            Uri imageUri = new Uri("\\SlideImages\\sunnyday.jpg", UriKind.RelativeOrAbsolute);
             sunnyday.Source= new BitmapImage(imageUri);
 
            //Todo: Get API code into here. Write code that switches image based on the days weather
