@@ -26,60 +26,58 @@
         <!--This is the foundational grid for the UI-->
         <Grid x:Name="BaseGrid">
             <!--This is the calendar Grid-->
-            <Grid x:Name="dayDateGrid" Grid.Column="1" Width="Auto" Background="#FFFFFE">
-                <Label Style="{StaticResource dateYearLabels}" Name="yearLabel" Content="2016" Width="Auto" Height="Auto" Grid.Column="0" Grid.Row="0" FontSize="30" Margin="10,50,0,0"  HorizontalContentAlignment="Center"/>
-                <Label Style="{StaticResource dateYearLabels}" Name="dayLabel" Content="THURSDAY" Width="Auto" Height="Auto" Grid.Column="1" Grid.Row="0" Margin="420,35,0,0" FontSize="20" FontWeight="Normal" HorizontalContentAlignment="Center"/>
-                <Label Style="{StaticResource dateYearLabels}" Name="monthDateLabel" Content="JANUARY 14" Width="Auto" Height="Auto" Grid.Column="1" Grid.Row="0" Margin="350,50,0,0" FontSize="30"  HorizontalContentAlignment="Center"/>
-                
-                <Grid x:Name="calendarGrid" Grid.Row="1">
-                    <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" Margin="9,0,0,0" Grid.ColumnSpan="7">
-                        <Image x:Name="leftArrow"/>
-                        <Label Style="{StaticResource dateYearLabels}" x:Name="monthSelectionLabel" Content="January" FontWeight="Bold"/>
-                        <Image x:Name="rightArrow"/>
-                    </StackPanel>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/> <!--column 0-->
-                        <ColumnDefinition Width="Auto"/> <!--column 1-->
-                        <ColumnDefinition Width="Auto"/> <!--column 2-->
-                        <ColumnDefinition Width="Auto"/> <!--column 2-->
-                        <ColumnDefinition Width="Auto"/> <!--column 4-->
-                        <ColumnDefinition Width="Auto"/> <!--column 5-->
-                        <ColumnDefinition Width="Auto"/> <!--column 6-->
-                        
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/> <!--Row 0-->
-                        <RowDefinition Height="Auto"/> <!--Row 1-->
-                        <RowDefinition Height="Auto"/> <!--Row 2-->
-                        <RowDefinition Height="Auto"/> <!--Row 3-->
-                        <RowDefinition Height="Auto"/> <!--Row 4-->
-                        <RowDefinition Height="Auto"/> <!--Row 5-->
-                        <RowDefinition Height="Auto"/> <!--Row 6-->
-                    </Grid.RowDefinitions>
-                </Grid>
-                <!--Calendar grid end-->
+            <Grid x:Name="calendarGrid" Grid.Column="1" Grid.Row="2">
+                <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" Width="Auto">
+                    <Image x:Name="leftArrow"/>
+                    <Label Style="{StaticResource dateYearLabels}" x:Name="monthSelectionLabel" Content="January" FontWeight="Bold"/>
+                    <Image x:Name="rightArrow"/>
+                </StackPanel>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/> <!--column 0-->
-                    <ColumnDefinition Width="Auto"/> <!--column 1-->
+                    <ColumnDefinition Width="*"/>
+                    <!--column 0-->
+                    <ColumnDefinition Width="*"/>
+                    <!--column 1-->
+                    <ColumnDefinition Width="*"/>
+                    <!--column 2-->
+                    <ColumnDefinition Width="*"/>
+                    <!--column 2-->
+                    <ColumnDefinition Width="*"/>
+                    <!--column 4-->
+                    <ColumnDefinition Width="*"/>
+                    <!--column 5-->
+                    <ColumnDefinition Width="*"/>
+                    <!--column 6-->
+
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/> <!--row 0-->
-                    <RowDefinition Height="Auto"/> <!--row 1-->
+                    <RowDefinition Height="*"/>
+                    <!--Row 0-->
+                    <RowDefinition Height="*"/>
+                    <!--Row 1-->
+                    <RowDefinition Height="*"/>
+                    <!--Row 2-->
+                    <RowDefinition Height="*"/>
+                    <!--Row 3-->
+                    <RowDefinition Height="Auto"/>
+                    <!--Row 4-->
+                    <RowDefinition Height="Auto"/>
+                    <!--Row 5-->
+                    <RowDefinition Height="Auto"/>
+                    <!--Row 6-->
                 </Grid.RowDefinitions>
-                
             </Grid>
+            <!--Calendar grid end-->
             <Border Name="mask" Background="White" CornerRadius="7"/>
             <!--The ViewBox is a very useful control in WPF. If does nothing more than scale to fit the content to the available size. It does not resize the content, but it transforms it. This means that also all text sizes and line widths were scaled. Its about the same behavior 
             as if you set the Stretch property on an Image or Path to Uniform.
             Although it can be used to fit any type of control, it's often used for 2D graphics, 
             or to fit a scalable part of a user interface into an screen area. -->
-            <Viewbox Name="imageViewBox" Grid.Row="0" Grid.Column="0" Stretch="Fill">
+            <Viewbox Name="imageViewBox" Grid.Row="0" Grid.Column="0" Stretch="UniformToFill">
                 <Image x:Name="sunnyday" Visibility="Visible" />
             </Viewbox>
-
-            <Viewbox Name="calendarViewBox" Grid.Row="0" Grid.Column="1" Stretch="Fill">
-                
-            </Viewbox>
+            <Label Style="{StaticResource dateYearLabels}" Name="yearLabel" Content="2016" Width="Auto" Height="Auto" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" FontSize="30" Margin="0,50,550,0"  HorizontalContentAlignment="Center"/>
+            <Label Style="{StaticResource dateYearLabels}" Name="dayLabel" Content="THURSDAY" Width="Auto" Height="Auto" Grid.Column="1" Grid.Row="0" Margin="0,35,30,0" FontSize="20" FontWeight="Normal" HorizontalContentAlignment="Right" Foreground="#C7D3D5"/>
+            <Label Style="{StaticResource dateYearLabels}" Name="monthDateLabel" Content="MARCH 14" Width="Auto" Height="Auto" Grid.Column="1" Grid.Row="0" Margin="0,50,30,0" FontSize="30"  HorizontalContentAlignment="Right"/>
             <!--Clipping mask used to give image rounded corners-->
             <Grid.OpacityMask>
                 <VisualBrush Visual="{Binding ElementName=mask}"/>
@@ -87,16 +85,17 @@
             <Grid.Background>
                 <SolidColorBrush Color="White"/>
             </Grid.Background>
-
-
-            <Grid.RowDefinitions></Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             
-
-
         </Grid>
         <!--Foundation grid end-->
     </Border>
