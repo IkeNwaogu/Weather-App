@@ -21,13 +21,11 @@
 
     <Border CornerRadius="8" BorderThickness="0">
         <Border.BorderBrush>
-            <SolidColorBrush Color="White"/>
+            <SolidColorBrush Color="#FFFFFE"/>
         </Border.BorderBrush>
         <!--This is the foundational grid for the UI-->
         <Grid x:Name="BaseGrid" >
-            
-            
-            <Border Name="mask" Background="White" CornerRadius="7"/>
+            <Border Name="mask" Background="#FFFFFE" CornerRadius="7"/>
             <!--The ViewBox is a very useful control in WPF. If does nothing more than scale to fit the content to the available size. It does not resize the content, but it transforms it. This means that also all text sizes and line widths were scaled. Its about the same behavior 
             as if you set the Stretch property on an Image or Path to Uniform.
             Although it can be used to fit any type of control, it's often used for 2D graphics, 
@@ -42,42 +40,28 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
-
                 </Grid.ColumnDefinitions>
             </Grid>
-            <Grid x:Name="weatherGrid" Grid.Column="1" Grid.Row="0" MaxWidth="640" MaxHeight="720">
+            <DockPanel Grid.Column="1" Grid.Row="0">
+                <Label DockPanel.Dock="Top" Style="{StaticResource dateYearLabels}" Name="dayLabel" Content="THURSDAY" Width="Auto" Height="Auto"  Margin="0,30,20,0" 
+                   Padding="0,0,0,0" 
+                   FontSize="20" 
+                   HorizontalContentAlignment="Right" 
+                   FontWeight="Normal"
+                   />
 
-                <!--Todo: Work on labels and stack panel one at a time until you have them looking right-->
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="17*"/>
+                <Label DockPanel.Dock="Bottom" Style="{StaticResource dateYearLabels}" Name="monthDateLabel" Content="May 14" Width="Auto" Height="Auto"  Margin="0,0,20,0" FontSize="30"  HorizontalContentAlignment="Right"/>
 
-                </Grid.ColumnDefinitions>
-            </Grid>
+
+            </DockPanel>
+            <TextBlock Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" >
+                <Label Style="{StaticResource dateYearLabels}" Name="yearLabel" Content="2016" Width="Auto" Height="Auto" Margin="10,50,0,0" FontSize="35"  HorizontalContentAlignment="Center" Grid.ColumnSpan="7"/>
+            </TextBlock>
+            
+            
+            <Viewbox Stretch="Uniform" Grid.Column="1" Margin="0,100,0,0">
+                <Calendar CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyle1}"></Calendar>
+            </Viewbox>
 
 
 
@@ -86,11 +70,10 @@
                 <VisualBrush Visual="{Binding ElementName=mask}"/>
             </Grid.OpacityMask>
             <Grid.Background>
-                <SolidColorBrush Color="White"/>
+                <SolidColorBrush Color="#FFFFFE"/>
             </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
