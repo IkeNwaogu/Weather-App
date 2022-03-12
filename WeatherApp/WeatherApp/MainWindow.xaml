@@ -12,28 +12,36 @@
         WindowStartupLocation="CenterScreen"
         MaxWidth="1280"
         MaxHeight="720"
+        MinHeight="720"
         MinWidth="440">
     <Window.Resources>
         <Style BasedOn="{StaticResource {x:Type Label}}" 
                TargetType="Label"
                x:Key="dateYearLabels">
             <Setter Property="FontFamily" Value="Bebas Neue"/>
-            <Setter Property="Foreground" Value="#747d8c"/>
+            <Setter Property="Foreground" Value="#2d2d2d"/>
         </Style>
+
+
+        
+
     </Window.Resources>
 
-    <Border CornerRadius="8" BorderThickness="0">
+    <Border CornerRadius="8" BorderThickness="0" >
         <Border.BorderBrush>
             <SolidColorBrush Color="#FFFFFE"/>
         </Border.BorderBrush>
         <!--This is the foundational grid for the UI-->
         <Grid x:Name="BaseGrid" >
+            
             <Border Name="mask" Background="#FFFFFE" CornerRadius="7"/>
             <!--The ViewBox is a very useful control in WPF. If does nothing more than scale to fit the content to the available size. It does not resize the content, but it transforms it. This means that also all text sizes and line widths were scaled. Its about the same behavior 
             as if you set the Stretch property on an Image or Path to Uniform.
             Although it can be used to fit any type of control, it's often used for 2D graphics, 
             or to fit a scalable part of a user interface into an screen area. -->
+            
             <Grid x:Name="imageGrid" Grid.Column="0" Grid.Row="0" MaxWidth="640">
+                
                 <Viewbox Name="imageViewBox" Grid.Row="0" Grid.Column="0" Stretch="UniformToFill">
                     <Image  x:Name="sunnyday" Visibility="Visible" />
                 </Viewbox>
@@ -45,7 +53,57 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
             </Grid>
-            <DockPanel Grid.Column="1" Grid.Row="0">
+            <Border Grid.ColumnSpan="1" 
+                    Grid.Row="0" 
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch"
+                    Background="#252525"
+                    Height="30"
+   
+                    Margin="0,0,0,690">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0">
+                    <Button Content="_" 
+                            Height="35" 
+                            Width="30" 
+                            Margin="0,0,0,0" 
+                            Padding="0,0,0,10"
+                            FontWeight="Bold"
+                            Background="Transparent"
+                            Foreground="Gray"
+                            BorderThickness="0"
+                            />
+                    <Button Content="☐" 
+                            Height="35" 
+                            Width="30" 
+                            Margin="0,0,0,0"
+                            FontWeight="Bold"
+                            Background="Transparent"
+                            Foreground="Gray"
+                            BorderThickness="0"
+                            />
+                    <Button Content="X" 
+                            Height="35" 
+                            Width="30" 
+                            Margin="0,0,0,0"
+                            FontWeight="Bold"
+                            >
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Foreground" Value="Gray"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="Dark"></Setter>
+                                        <Setter Property="Foreground" Value="Orange"></Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
+            </Border>
+            <DockPanel Grid.Column="1" Grid.Row="0" Margin="0,20,0,0">
                 <Label DockPanel.Dock="Top" Style="{StaticResource dateYearLabels}" Name="dayLabel" Content="THURSDAY" Width="Auto" Height="Auto"  Margin="0,30,20,0" 
                    Padding="0,0,0,0" 
                    FontSize="20" 
@@ -53,17 +111,26 @@
                    FontWeight="Normal"
                    />
 
-                <Label DockPanel.Dock="Bottom" Style="{StaticResource dateYearLabels}" Name="monthDateLabel" Content="May 14" Width="Auto" Height="Auto"  Margin="0,0,20,0" FontSize="30"  HorizontalContentAlignment="Right"/>
+                <Label DockPanel.Dock="Bottom" 
+                       Style="{StaticResource dateYearLabels}" 
+                       Name="monthDateLabel" Content="May 14" 
+                       Width="Auto" 
+                       Height="Auto"  
+                       Margin="0,0,20,0" 
+                       FontSize="30"  
+                       HorizontalContentAlignment="Right"/>
 
 
             </DockPanel>
-            <TextBlock Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" >
-                <Label Style="{StaticResource dateYearLabels}" Name="yearLabel" Content="2016" Width="Auto" Height="Auto" Margin="10,50,0,0" FontSize="35"  HorizontalContentAlignment="Center" Grid.ColumnSpan="7"/>
-            </TextBlock>
             
             
             <Viewbox Stretch="Uniform" Grid.Column="1" Margin="0,100,0,0">
-                <Calendar  CalendarButtonStyle="{DynamicResource CalendarCalendarButtonStyle1}" CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyle1}" Style="{DynamicResource CalendarStyle2}"></Calendar>
+                <Calendar  CalendarButtonStyle="{DynamicResource CalendarCalendarButtonStyle1}" 
+                           CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyle1}" 
+                           Style="{DynamicResource CalendarStyle2}" FontFamily="Bebas Neue"
+                           CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}">
+                    
+                </Calendar>
             </Viewbox>
 
 
