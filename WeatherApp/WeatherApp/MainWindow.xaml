@@ -5,17 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherApp"
         mc:Ignorable="d"
-        Title="" Height="720" Width="1280" ResizeMode="NoResize" 
+        Title="" Height="720" Width="1280" ResizeMode="CanResizeWithGrip" 
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        MaxWidth="1280"
+        MaxHeight="720"
+        MinWidth="440">
     <Window.Resources>
         <Style BasedOn="{StaticResource {x:Type Label}}" 
                TargetType="Label"
                x:Key="dateYearLabels">
             <Setter Property="FontFamily" Value="Bebas Neue"/>
-            <Setter Property="Foreground" Value="#B8C6C8"/>
+            <Setter Property="Foreground" Value="#747d8c"/>
         </Style>
     </Window.Resources>
 
@@ -32,7 +35,7 @@
             or to fit a scalable part of a user interface into an screen area. -->
             <Grid x:Name="imageGrid" Grid.Column="0" Grid.Row="0" MaxWidth="640">
                 <Viewbox Name="imageViewBox" Grid.Row="0" Grid.Column="0" Stretch="UniformToFill">
-                    <Image x:Name="sunnyday" Visibility="Visible" />
+                    <Image  x:Name="sunnyday" Visibility="Visible" />
                 </Viewbox>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -60,7 +63,7 @@
             
             
             <Viewbox Stretch="Uniform" Grid.Column="1" Margin="0,100,0,0">
-                <Calendar CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyle1}"></Calendar>
+                <Calendar  CalendarButtonStyle="{DynamicResource CalendarCalendarButtonStyle1}" CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyle1}" Style="{DynamicResource CalendarStyle2}"></Calendar>
             </Viewbox>
 
 
