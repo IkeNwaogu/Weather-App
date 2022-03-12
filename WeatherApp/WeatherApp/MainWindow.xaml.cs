@@ -34,6 +34,40 @@ namespace WeatherApp
 
         }
 
+        //Allows window to be dragable when border clicked on
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if(e.LeftButton == MouseButtonState.Pressed)
+                DragMove(); 
+        }
+
+        //Minimizes Window
+        private void ButtonMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+        }
+
+        //Closes the window
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        /*private void WindowSateButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Application.Current.MainWindow.WindowState != WindowState.Maximized) 
+            {
+                Application.Current.MainWindow.WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                Application.Current.MainWindow.WindowState = WindowState.Normal;
+            }
+                
+        }*/
+
+
+
         /*HttpClient client = new HttpClient();
         static async Task Main(string[] args)
         {
@@ -51,6 +85,6 @@ namespace WeatherApp
             Console.WriteLine("lat:" + rootObject.coord.lat);
 
         }*/
-        
+
     }
 }

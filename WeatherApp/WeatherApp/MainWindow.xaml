@@ -23,7 +23,7 @@
         </Style>
 
 
-        
+
 
     </Window.Resources>
 
@@ -33,15 +33,15 @@
         </Border.BorderBrush>
         <!--This is the foundational grid for the UI-->
         <Grid x:Name="BaseGrid" >
-            
+
             <Border Name="mask" Background="#FFFFFE" CornerRadius="7"/>
             <!--The ViewBox is a very useful control in WPF. If does nothing more than scale to fit the content to the available size. It does not resize the content, but it transforms it. This means that also all text sizes and line widths were scaled. Its about the same behavior 
             as if you set the Stretch property on an Image or Path to Uniform.
             Although it can be used to fit any type of control, it's often used for 2D graphics, 
             or to fit a scalable part of a user interface into an screen area. -->
-            
+
             <Grid x:Name="imageGrid" Grid.Column="0" Grid.Row="0" MaxWidth="640">
-                
+
                 <Viewbox Name="imageViewBox" Grid.Row="0" Grid.Column="0" Stretch="UniformToFill">
                     <Image  x:Name="sunnyday" Visibility="Visible" />
                 </Viewbox>
@@ -59,20 +59,24 @@
                     HorizontalAlignment="Stretch"
                     Background="#252525"
                     Height="30"
-   
+                    MouseDown="Border_MouseDown"
                     Margin="0,0,0,690">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0">
-                    <Button Content="_" 
-                            Height="35" 
-                            Width="30" 
-                            Margin="0,0,0,0" 
-                            Padding="0,0,0,10"
-                            FontWeight="Bold"
-                            Background="Transparent"
-                            Foreground="Gray"
-                            BorderThickness="0"
-                            />
-                    <Button Content="☐" 
+                    <Button Style="{DynamicResource ButtonStyle1}" Content="―" 
+                        Height="35" 
+                        Width="30" 
+                        Margin="0,0,0,0" 
+                        Padding="0,0,0,0"
+                        FontWeight="Bold"
+                        Background="Transparent"
+                        Foreground="Gray"
+                        BorderThickness="0"
+                        Click="ButtonMinimize_Click"
+                        x:Name="minimizeButton">
+
+
+                    </Button>
+                    <!--<Button Content="☐" 
                             Height="35" 
                             Width="30" 
                             Margin="0,0,0,0"
@@ -80,27 +84,19 @@
                             Background="Transparent"
                             Foreground="Gray"
                             BorderThickness="0"
-                            />
+                            Click="WindowSateButton_Click"
+                            />-->
+                    <!--Todo:Copy github windows button highlighting-->
                     <Button Content="X" 
                             Height="35" 
                             Width="30" 
                             Margin="0,0,0,0"
                             FontWeight="Bold"
-                            >
-                        <Button.Style>
-                            <Style TargetType="{x:Type Button}">
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Foreground" Value="Gray"/>
-                                <Setter Property="BorderThickness" Value="0"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="Dark"></Setter>
-                                        <Setter Property="Foreground" Value="Orange"></Setter>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
+                            Foreground="Gray"
+                            BorderThickness="0"
+                            Click="CloseButton_Click" Style="{DynamicResource ButtonStyle2}"
+                            Background="Transparent"
+                            />
                 </StackPanel>
             </Border>
             <DockPanel Grid.Column="1" Grid.Row="0" Margin="0,20,0,0">
@@ -122,14 +118,14 @@
 
 
             </DockPanel>
-            
-            
+
+
             <Viewbox Stretch="Uniform" Grid.Column="1" Margin="0,100,0,0">
                 <Calendar  CalendarButtonStyle="{DynamicResource CalendarCalendarButtonStyle1}" 
                            CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyle1}" 
                            Style="{DynamicResource CalendarStyle2}" FontFamily="Bebas Neue"
                            CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}">
-                    
+
                 </Calendar>
             </Viewbox>
 
