@@ -21,6 +21,12 @@
             <Setter Property="FontFamily" Value="Bebas Neue"/>
             <Setter Property="Foreground" Value="#2d2d2d"/>
         </Style>
+        <Style BasedOn="{StaticResource {x:Type Label}}" 
+               TargetType="Label"
+               x:Key="weatherLabels">
+            <Setter Property="FontFamily" Value="Fredoka"/>
+            <Setter Property="Foreground" Value="#FFFFFE"/>
+        </Style>
 
 
 
@@ -41,10 +47,67 @@
             or to fit a scalable part of a user interface into an screen area. -->
 
             <Grid x:Name="imageGrid" Grid.Column="0" Grid.Row="0" MaxWidth="640">
-
-                <Viewbox Name="imageViewBox" Grid.Row="0" Grid.Column="0" Stretch="UniformToFill">
+                <Viewbox  
+                    Name="imageViewBox" 
+                    Grid.Row="0" 
+                    Grid.Column="0" 
+                    Stretch="UniformToFill">
                     <Image  x:Name="sunnyday" Visibility="Visible" />
                 </Viewbox>
+
+                <StackPanel Orientation="Vertical" 
+                            Panel.ZIndex="1" 
+                            Grid.Row="0" 
+                            Grid.Column="0" 
+                            HorizontalAlignment="Right" 
+                            Margin="0,10,20,0">
+                    
+                    <Label Name="location" 
+                           Content="Atlanta, Georgia"  
+                           FontSize="20"
+                           Style="{StaticResource weatherLabels}"
+                           FontWeight="Light"
+                           Margin="0,1,0,0"
+                           >
+                    </Label>
+                    <Label Name="temp" 
+                           Content="50°C"  
+                           FontSize="25"
+                           Style="{StaticResource weatherLabels}"
+                           Margin="0,1,0,0"
+                           FontWeight="DemiBold"
+                           >
+                    </Label>
+                    <Label 
+                        Name="feels_like" 
+                        Content="Feels Like 40°"  
+                        FontSize="25"
+                        Style="{StaticResource weatherLabels}"
+                        Margin="0,1,0,0"
+                        FontWeight="DemiBold"
+                        >
+                    </Label>
+                    <Label 
+                        Name="description" 
+                        Content="Overcast Clouds" 
+                        FontSize="25"
+                        Style="{StaticResource weatherLabels}"
+                        Margin="0,1,0,0"
+                        FontWeight="DemiBold"
+                        >
+                    </Label>
+                    <Label 
+                        Name="temp_min_max" 
+                        Content="32°/55°" 
+                        FontSize="25"
+                        Style="{StaticResource weatherLabels}"
+                        Margin="0,1,0,0"
+                        FontWeight="DemiBold"
+                        >
+                    </Label>
+                    
+                </StackPanel>
+                
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
@@ -61,7 +124,9 @@
                     Height="30"
                     MouseDown="Border_MouseDown"
                     Margin="0,0,0,690">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0">
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Right" 
+                            Grid.Column="1" Grid.Row="0">
                     <Button Style="{DynamicResource ButtonStyle1}" Content="―" 
                         Height="35" 
                         Width="30" 
@@ -100,7 +165,7 @@
                 </StackPanel>
             </Border>
             <DockPanel Grid.Column="1" Grid.Row="0" Margin="0,20,0,0">
-                <Label DockPanel.Dock="Top" Style="{StaticResource dateYearLabels}" Name="dayLabel" Content="THURSDAY" Width="Auto" Height="Auto"  Margin="0,30,20,0" 
+                <Label DockPanel.Dock="Top" Style="{StaticResource dateYearLabels}" Name="dayLabel" Content="DAY" Width="Auto" Height="Auto"  Margin="0,30,20,0" 
                    Padding="0,0,0,0" 
                    FontSize="20" 
                    HorizontalContentAlignment="Right" 
