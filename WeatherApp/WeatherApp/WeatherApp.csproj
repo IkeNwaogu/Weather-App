@@ -8,8 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="SlideImages\sunboy.jpg" />
+    <None Remove="SlideImages\cloudy.jpg" />
+    <None Remove="SlideImages\rain.jpg" />
+    <None Remove="SlideImages\snowstorm.jpg" />
     <None Remove="SlideImages\sunnyday.jpg" />
+    <None Remove="SlideImages\thunderstorm.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,10 +20,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="SlideImages\sunboy.jpg">
+    <Resource Include="SlideImages\cloudy.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="SlideImages\rain.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="SlideImages\snowstorm.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="SlideImages\sunnyday.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="SlideImages\thunderstorm.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

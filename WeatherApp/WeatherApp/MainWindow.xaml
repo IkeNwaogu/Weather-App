@@ -52,7 +52,7 @@
                     Grid.Row="0" 
                     Grid.Column="0" 
                     Stretch="UniformToFill">
-                    <Image  x:Name="sunnyday" Visibility="Visible" />
+                    <Image  x:Name="weatherImage" Visibility="Visible" />
                 </Viewbox>
 
                 <StackPanel Orientation="Vertical" 

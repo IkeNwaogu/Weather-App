@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Copyright Ike Nwaogu
+//
+using System;
 using System.Globalization;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,12 +39,12 @@ namespace WeatherApp
         {
             InitializeComponent();
             getWeatherItems();
-            Uri imageUri = new Uri("\\SlideImages\\sunnyday.jpg", UriKind.RelativeOrAbsolute);
-            sunnyday.Source = new BitmapImage(imageUri);
+            
             DateTime dt = DateTime.Now;
             dayLabel.Content = dt.DayOfWeek.ToString();
 
             monthDateLabel.Content = getFullMonthName(dt.Month) + " " + dt.Day.ToString();
+            
 
             //Todo: Get API code into here. Write code that switches image based on the days weather
             //hi
@@ -77,8 +79,76 @@ namespace WeatherApp
         private async Task getWeatherItems()
         {
             HttpClient client = new HttpClient();
+            //use this to get a description of the weather and the high and low for the day
+            string weatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/weather?lat=34.0234&lon=-84.6155&units=imperial&appid=15724f573e12682b5fbba6f11449f517");
+            var rootObject = JsonConvert.DeserializeObject<Root>(weatherInfo);
+            Uri imageUri;
+            if (rootObject != null)
+            {
+               
+                switch (rootObject.weather[0].main)
+                {
+                    case "Clear":
+                        imageUri = new Uri("\\SlideImages\\sunnyday.jpg", UriKind.RelativeOrAbsolute);
+                        weatherImage.Source = new BitmapImage(imageUri);
+                        break;
+                    case "Clouds":
+                        imageUri = new Uri("\\SlideImages\\cloudy.jpg", UriKind.RelativeOrAbsolute);
+                        weatherImage.Source = new BitmapImage(imageUri);
+                        break;
+                    case "Snow":
+                        imageUri = new Uri("\\SlideImages\\snowstorm.jpg", UriKind.RelativeOrAbsolute);
+                        weatherImage.Source = new BitmapImage(imageUri);
+                        break;
+                    case "Rain":
+                        imageUri = new Uri("\\SlideImages\\rain.jpg", UriKind.RelativeOrAbsolute);
+                        weatherImage.Source = new BitmapImage(imageUri);
+                        break;
+                    case "Thunderstorm":
+                        imageUri = new Uri("\\SlideImages\\thunderstorm.jpg", UriKind.RelativeOrAbsolute);
+                        weatherImage.Source = new BitmapImage(imageUri);
+                        break;
+                }
+            }
+           
+            
+            /*if (rootObject.weather[0].main == "Clear")
+            {
+                imageUri = new Uri("\\SlideImages\\sunnyday.jpg", UriKind.RelativeOrAbsolute);
+                weatherImage.Source = new BitmapImage(imageUri);
+            }
+            else if (rootObject.weather[0].main == "Clouds")
+            {
+                imageUri = new Uri("\\SlideImages\\cloudy.jpg", UriKind.RelativeOrAbsolute);
+                weatherImage.Source = new BitmapImage(imageUri);
+            }
+            else if (rootObject.weather[0].main.Equals("Snow"))
+            {
+                imageUri = new Uri("\\SlideImages\\snowstorm.jpg", UriKind.RelativeOrAbsolute);
+                weatherImage.Source = new BitmapImage(imageUri);
+
+            }
+            else if (rootObject.weather[0].main == "Rain")
+            {
+                imageUri = new Uri("\\SlideImages\\rain.jpg", UriKind.RelativeOrAbsolute);
+                weatherImage.Source = new BitmapImage(imageUri);
+            }
+            else if (rootObject.weather[0].main == "Thunderstorm")
+            {
+                imageUri = new Uri("\\SlideImages\\rain.jpg", UriKind.RelativeOrAbsolute);
+                weatherImage.Source = new BitmapImage(imageUri);
+            }*/
+
+            if (rootObject != null)
+            {
+                description.Content = rootObject.weather[0].description;
+                //rounded to int because API gives decimal
+                temp_min_max.Content = ((int)(rootObject.main.temp_min)).ToString() + "°" + "/ " + ((int)(rootObject.main.temp_max)).ToString() + "°";
+
+            }
+
             //Use this to get the current temperature and feels like
-            string currentWeatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/onecall?lat=34.0234&lon=-84.6155&exclude=minutely,hourly,daily,alerts&units=imperial&appid=15724f573e12682b5fbba6f11449f517");
+            var currentWeatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/onecall?lat=34.0234&lon=-84.6155&exclude=minutely,hourly,daily,alerts&units=imperial&appid=15724f573e12682b5fbba6f11449f517");
             var currentWeatherObject = JsonConvert.DeserializeObject<CurrentWeatherModel.currentWeatherRoot>(currentWeatherInfo);
             if (currentWeatherObject != null)
             {
@@ -86,19 +156,6 @@ namespace WeatherApp
                 temp.Content = ((int)currentWeatherObject.current.temp).ToString() + "°";
                 feels_like.Content = ("Feels like "+(int)(currentWeatherObject.current.feels_like)).ToString() + "°";
             }
-
-            //use this to get a description of the weather and the high and low for the day
-            string weatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/weather?lat=34.0234&lon=-84.6155&units=imperial&appid=15724f573e12682b5fbba6f11449f517");
-            var rootObject = JsonConvert.DeserializeObject<Root>(weatherInfo);
-            if (rootObject != null)
-            { 
-                description.Content = rootObject.weather[0].description;
-                //rounded to int because API gives decimal
-                temp_min_max.Content = ((int)(rootObject.main.temp_min)).ToString()+"°" + "/ " + ((int)(rootObject.main.temp_max)).ToString() + "°";
-                
-            }
-
-            
         }
 
     }
