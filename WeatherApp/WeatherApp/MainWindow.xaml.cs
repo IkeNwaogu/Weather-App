@@ -36,16 +36,16 @@ namespace WeatherApp
         public MainWindow()
         {
             InitializeComponent();
-            returnWeatherContent();
+            getWeatherItems();
             Uri imageUri = new Uri("\\SlideImages\\sunnyday.jpg", UriKind.RelativeOrAbsolute);
-            sunnyday.Source= new BitmapImage(imageUri);
+            sunnyday.Source = new BitmapImage(imageUri);
             DateTime dt = DateTime.Now;
             dayLabel.Content = dt.DayOfWeek.ToString();
 
-            monthDateLabel.Content = getFullMonthName(dt.Month)+" "+dt.Day.ToString();
+            monthDateLabel.Content = getFullMonthName(dt.Month) + " " + dt.Day.ToString();
 
-           //Todo: Get API code into here. Write code that switches image based on the days weather
-           //hi
+            //Todo: Get API code into here. Write code that switches image based on the days weather
+            //hi
 
         }
         //Returns the full name of the month
@@ -57,8 +57,8 @@ namespace WeatherApp
         //Allows window to be dragable when border clicked on
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(e.LeftButton == MouseButtonState.Pressed)
-                DragMove(); 
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
         }
 
         //Minimizes Window
@@ -73,43 +73,32 @@ namespace WeatherApp
             Application.Current.Shutdown();
         }
 
-  
 
-        HttpClient client = new HttpClient();
-        private async Task returnWeatherContent()
+        private async Task getWeatherItems()
         {
-            await getWeatherItems();
-              
-        }
-        
-         private async Task getWeatherItems()
-        {
-            //string weatherInfo = await client.GetStringAsync("https://http://api.openweathermap.org/data/2.5/weather?lat=34.0234&lon=-84.6155&appid=15724f573e12682b5fbba6f11449f517");
+            HttpClient client = new HttpClient();
+            //Use this to get the current temperature and feels like
             string currentWeatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/onecall?lat=34.0234&lon=-84.6155&exclude=minutely,hourly,daily,alerts&units=imperial&appid=15724f573e12682b5fbba6f11449f517");
-
-            //var rootObject = JsonConvert.DeserializeObject<Root>(weatherInfo);
             var currentWeatherObject = JsonConvert.DeserializeObject<CurrentWeatherModel.currentWeatherRoot>(currentWeatherInfo);
-            /*if (rootObject != null)
-            {
-                
-                
-                description.Content = rootObject.weather[2].ToString() + "°";
-                temp_min_max.Content = (rootObject.main.temp_min-273.15).ToString()+"°" + "/" + (rootObject.main.temp_max-273.15).ToString() + "°";
-                
-            }*/
-
             if (currentWeatherObject != null)
             {
-                temp.Content = (currentWeatherObject.current.temp).ToString() + "°";
-                feels_like.Content = (currentWeatherObject.current.feels_like).ToString() + "°";
+                //rounded to int because API gives decimal
+                temp.Content = ((int)currentWeatherObject.current.temp).ToString() + "°";
+                feels_like.Content = ("Feels like "+(int)(currentWeatherObject.current.feels_like)).ToString() + "°";
+            }
 
-                MessageBox.Show(currentWeatherObject.current.temp.ToString());
-                MessageBox.Show("hello");
+            //use this to get a description of the weather and the high and low for the day
+            string weatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/weather?lat=34.0234&lon=-84.6155&units=imperial&appid=15724f573e12682b5fbba6f11449f517");
+            var rootObject = JsonConvert.DeserializeObject<Root>(weatherInfo);
+            if (rootObject != null)
+            { 
+                description.Content = rootObject.weather[0].description;
+                //rounded to int because API gives decimal
+                temp_min_max.Content = ((int)(rootObject.main.temp_min)).ToString()+"°" + "/ " + ((int)(rootObject.main.temp_max)).ToString() + "°";
+                
             }
-            else if (currentWeatherObject == null)
-            {
-                MessageBox.Show("Null");
-            }
+
+            
         }
 
     }

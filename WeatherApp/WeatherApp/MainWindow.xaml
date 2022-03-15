@@ -71,7 +71,7 @@
                            >
                     </Label>
                     <Label Name="temp" 
-                           Content="50°C"  
+                           Content="---"  
                            FontSize="25"
                            Style="{StaticResource weatherLabels}"
                            Margin="0,1,0,0"
@@ -80,7 +80,7 @@
                     </Label>
                     <Label 
                         Name="feels_like" 
-                        Content="Feels Like 40°"  
+                        Content="---"  
                         FontSize="25"
                         Style="{StaticResource weatherLabels}"
                         Margin="0,1,0,0"
@@ -89,7 +89,7 @@
                     </Label>
                     <Label 
                         Name="description" 
-                        Content="Overcast Clouds" 
+                        Content="---" 
                         FontSize="25"
                         Style="{StaticResource weatherLabels}"
                         Margin="0,1,0,0"
@@ -98,7 +98,7 @@
                     </Label>
                     <Label 
                         Name="temp_min_max" 
-                        Content="32°/55°" 
+                        Content="---" 
                         FontSize="25"
                         Style="{StaticResource weatherLabels}"
                         Margin="0,1,0,0"
