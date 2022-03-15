@@ -80,7 +80,7 @@ namespace WeatherApp
         {
             HttpClient client = new HttpClient();
             //use this to get a description of the weather and the high and low for the day
-            string weatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/weather?lat=34.0234&lon=-84.6155&units=imperial&appid=15724f573e12682b5fbba6f11449f517");
+            string weatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/weather?lat=34.0234&lon=-84.6155&units=imperial&appid=key");
             var rootObject = JsonConvert.DeserializeObject<Root>(weatherInfo);
             Uri imageUri;
             if (rootObject != null)
@@ -148,7 +148,7 @@ namespace WeatherApp
             }
 
             //Use this to get the current temperature and feels like
-            var currentWeatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/onecall?lat=34.0234&lon=-84.6155&exclude=minutely,hourly,daily,alerts&units=imperial&appid=15724f573e12682b5fbba6f11449f517");
+            var currentWeatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/onecall?lat=34.0234&lon=-84.6155&exclude=minutely,hourly,daily,alerts&units=imperial&appid=key");
             var currentWeatherObject = JsonConvert.DeserializeObject<CurrentWeatherModel.currentWeatherRoot>(currentWeatherInfo);
             if (currentWeatherObject != null)
             {
