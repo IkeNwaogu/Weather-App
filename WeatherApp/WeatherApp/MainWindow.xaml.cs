@@ -33,8 +33,7 @@ namespace WeatherApp
         //Todo: use location api to get location
         //Todo: create loading indicator animation for when api is loading
         //Todo: Try creating seperate async methods for each currentWeatherModel and WeatherModel
-        //farenheight api call:https://api.openweathermap.org/data/2.5/onecall?lat=34.0234&lon=-84.6155&exclude=minutely,hourly,daily,alerts&units=imperial&appid=15724f573e12682b5fbba6f11449f517
-        //celsius api call: https://api.openweathermap.org/data/2.5/onecall?lat=34.0234&lon=-84.6155&exclude=minutely,hourly,daily,alerts&units=metric&appid=15724f573e12682b5fbba6f11449f517
+        
         public MainWindow()
         {
             InitializeComponent();
