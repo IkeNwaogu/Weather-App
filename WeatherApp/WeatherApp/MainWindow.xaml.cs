@@ -3,23 +3,12 @@
 using System;
 using System.Globalization;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.IO;
 using System.Net.Http;
 using Newtonsoft.Json;
-
-
 
 namespace WeatherApp
 {
@@ -36,12 +25,7 @@ namespace WeatherApp
             getWeatherItems();
             DateTime dt = DateTime.Now;
             dayLabel.Content = dt.DayOfWeek.ToString();
-
             monthDateLabel.Content = getFullMonthName(dt.Month) + " " + dt.Day.ToString();
-
-
-            //Todo: Get API code into here. Write code that switches image based on the days weather
-            //hi
 
         }
         //Returns the full name of the month
@@ -70,12 +54,11 @@ namespace WeatherApp
         }
 
         
-
         private async Task<List<String>> getWeatherJsonAsync()
         {
             HttpClient client = new HttpClient();
-            var weatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/weather?lat=34.0234&lon=-84.6155&units=imperial&appid=key");
-            var currentWeatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/onecall?lat=34.0234&lon=-84.6155&exclude=minutely,hourly,daily,alerts&units=imperial&appid=key");
+            var weatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/weather?lat=34.0234&lon=-84.6155&units=imperial&appid=feab52b2c7e35edfaeabf1bd87f6305f");
+            var currentWeatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/onecall?lat=34.0234&lon=-84.6155&exclude=minutely,hourly,daily,alerts&units=imperial&appid=feab52b2c7e35edfaeabf1bd87f6305f");
             List<String> results = new List<String>();
             results.Add(weatherInfo);
             results.Add(currentWeatherInfo);

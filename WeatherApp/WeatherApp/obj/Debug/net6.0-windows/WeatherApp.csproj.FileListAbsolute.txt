@@ -40,8 +40,10 @@ C:\Users\Ike\source\repos\Weather-App\WeatherApp\WeatherApp\obj\Debug\net6.0-win
 C:\Users\Ike\source\repos\Weather-App\WeatherApp\WeatherApp\obj\Debug\net6.0-windows\WeatherApp.csproj.CoreCompileInputs.cache
 C:\Users\Ike\source\repos\Weather-App\WeatherApp\WeatherApp\obj\Debug\net6.0-windows\WeatherApp.csproj.CopyComplete
 C:\Users\Ike\source\repos\Weather-App\WeatherApp\WeatherApp\obj\Debug\net6.0-windows\WeatherApp.dll
-C:\Users\Ike\source\repos\Weather-App\WeatherApp\WeatherApp\obj\Debug\net6.0-windows\refint\WeatherApp.dll
 C:\Users\Ike\source\repos\Weather-App\WeatherApp\WeatherApp\obj\Debug\net6.0-windows\WeatherApp.pdb
 C:\Users\Ike\source\repos\Weather-App\WeatherApp\WeatherApp\obj\Debug\net6.0-windows\WeatherApp.genruntimeconfig.cache
 C:\Users\Ike\source\repos\Weather-App\WeatherApp\WeatherApp\obj\Debug\net6.0-windows\ref\WeatherApp.dll
 C:\Users\Ike\source\repos\Weather-App\WeatherApp\WeatherApp\obj\Debug\net6.0-windows\App.baml
+C:\Users\Ike\source\repos\Weather-App\WeatherApp\WeatherApp\obj\Debug\net6.0-windows\refint\WeatherApp.dll
+C:\Users\Ike\source\repos\Weather-App\WeatherApp\WeatherApp\obj\Debug\net6.0-windows\Interop.PortableDeviceApiLib.dll
+C:\Users\Ike\source\repos\Weather-App\WeatherApp\WeatherApp\obj\Debug\net6.0-windows\WeatherApp.csproj.ResolveComReference.cache
