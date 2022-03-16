@@ -57,8 +57,8 @@ namespace WeatherApp
         private async Task<List<String>> getWeatherJsonAsync()
         {
             HttpClient client = new HttpClient();
-            var weatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/weather?lat=34.0234&lon=-84.6155&units=imperial&appid=feab52b2c7e35edfaeabf1bd87f6305f");
-            var currentWeatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/onecall?lat=34.0234&lon=-84.6155&exclude=minutely,hourly,daily,alerts&units=imperial&appid=feab52b2c7e35edfaeabf1bd87f6305f");
+            var weatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/weather?lat=34.0234&lon=-84.6155&units=imperial&appid=key");
+            var currentWeatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/onecall?lat=34.0234&lon=-84.6155&exclude=minutely,hourly,daily,alerts&units=imperial&appid=key");
             List<String> results = new List<String>();
             results.Add(weatherInfo);
             results.Add(currentWeatherInfo);
