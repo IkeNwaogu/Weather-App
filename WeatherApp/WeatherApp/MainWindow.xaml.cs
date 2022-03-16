@@ -28,23 +28,17 @@ namespace WeatherApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        //Todo: Create debug drop down to change weather/picture at will
-        //Todo: Create option to change from celcisus to farenheight
         //Todo: use location api to get location
-        //Todo: create loading indicator animation for when api is loading
-        //Todo: Try creating seperate async methods for each currentWeatherModel and WeatherModel
-        //farenheight api call:https://api.openweathermap.org/data/2.5/onecall?lat=34.0234&lon=-84.6155&exclude=minutely,hourly,daily,alerts&units=imperial&appid=15724f573e12682b5fbba6f11449f517
-        //celsius api call: https://api.openweathermap.org/data/2.5/onecall?lat=34.0234&lon=-84.6155&exclude=minutely,hourly,daily,alerts&units=metric&appid=15724f573e12682b5fbba6f11449f517
+        
         public MainWindow()
         {
             InitializeComponent();
             getWeatherItems();
-            
             DateTime dt = DateTime.Now;
             dayLabel.Content = dt.DayOfWeek.ToString();
 
             monthDateLabel.Content = getFullMonthName(dt.Month) + " " + dt.Day.ToString();
-            
+
 
             //Todo: Get API code into here. Write code that switches image based on the days weather
             //hi
@@ -75,22 +69,40 @@ namespace WeatherApp
             Application.Current.Shutdown();
         }
 
+        
 
-        private async Task getWeatherItems()
+        private async Task<List<String>> getWeatherJsonAsync()
         {
             HttpClient client = new HttpClient();
-            //use this to get a description of the weather and the high and low for the day
-            string weatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/weather?lat=34.0234&lon=-84.6155&units=imperial&appid=15724f573e12682b5fbba6f11449f517");
-            var rootObject = JsonConvert.DeserializeObject<Root>(weatherInfo);
+            var weatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/weather?lat=34.0234&lon=-84.6155&units=imperial&appid=key");
+            var currentWeatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/onecall?lat=34.0234&lon=-84.6155&exclude=minutely,hourly,daily,alerts&units=imperial&appid=key");
+            List<String> results = new List<String>();
+            results.Add(weatherInfo);
+            results.Add(currentWeatherInfo);
+            return results;
+        }
+
+
+        private void getWeatherItems()
+        {
+            List<String> weatherItems = Task.Run(getWeatherJsonAsync).Result;
+            var rootObject = JsonConvert.DeserializeObject<Root>(weatherItems[0]);
+            #region use this to get a description of the weather and the high and low for the day
             Uri imageUri;
+            if (rootObject == null)
+            {
+                MessageBox.Show("Null");
+            }
+            
             if (rootObject != null)
             {
-               
+
                 switch (rootObject.weather[0].main)
                 {
                     case "Clear":
                         imageUri = new Uri("\\SlideImages\\sunnyday.jpg", UriKind.RelativeOrAbsolute);
                         weatherImage.Source = new BitmapImage(imageUri);
+
                         break;
                     case "Clouds":
                         imageUri = new Uri("\\SlideImages\\cloudy.jpg", UriKind.RelativeOrAbsolute);
@@ -109,53 +121,22 @@ namespace WeatherApp
                         weatherImage.Source = new BitmapImage(imageUri);
                         break;
                 }
-            }
-           
-            
-            /*if (rootObject.weather[0].main == "Clear")
-            {
-                imageUri = new Uri("\\SlideImages\\sunnyday.jpg", UriKind.RelativeOrAbsolute);
-                weatherImage.Source = new BitmapImage(imageUri);
-            }
-            else if (rootObject.weather[0].main == "Clouds")
-            {
-                imageUri = new Uri("\\SlideImages\\cloudy.jpg", UriKind.RelativeOrAbsolute);
-                weatherImage.Source = new BitmapImage(imageUri);
-            }
-            else if (rootObject.weather[0].main.Equals("Snow"))
-            {
-                imageUri = new Uri("\\SlideImages\\snowstorm.jpg", UriKind.RelativeOrAbsolute);
-                weatherImage.Source = new BitmapImage(imageUri);
 
-            }
-            else if (rootObject.weather[0].main == "Rain")
-            {
-                imageUri = new Uri("\\SlideImages\\rain.jpg", UriKind.RelativeOrAbsolute);
-                weatherImage.Source = new BitmapImage(imageUri);
-            }
-            else if (rootObject.weather[0].main == "Thunderstorm")
-            {
-                imageUri = new Uri("\\SlideImages\\rain.jpg", UriKind.RelativeOrAbsolute);
-                weatherImage.Source = new BitmapImage(imageUri);
-            }*/
-
-            if (rootObject != null)
-            {
                 description.Content = rootObject.weather[0].description;
                 //rounded to int because API gives decimal
                 temp_min_max.Content = ((int)(rootObject.main.temp_min)).ToString() + "°" + "/ " + ((int)(rootObject.main.temp_max)).ToString() + "°";
-
             }
+            #endregion
 
-            //Use this to get the current temperature and feels like
-            var currentWeatherInfo = await client.GetStringAsync("https://api.openweathermap.org/data/2.5/onecall?lat=34.0234&lon=-84.6155&exclude=minutely,hourly,daily,alerts&units=imperial&appid=15724f573e12682b5fbba6f11449f517");
-            var currentWeatherObject = JsonConvert.DeserializeObject<CurrentWeatherModel.currentWeatherRoot>(currentWeatherInfo);
+        #region Use this to get the current temperature and feels like
+            var currentWeatherObject = JsonConvert.DeserializeObject<CurrentWeatherModel.currentWeatherRoot>(weatherItems[1]);
             if (currentWeatherObject != null)
             {
                 //rounded to int because API gives decimal
                 temp.Content = ((int)currentWeatherObject.current.temp).ToString() + "°";
-                feels_like.Content = ("Feels like "+(int)(currentWeatherObject.current.feels_like)).ToString() + "°";
+                feels_like.Content = ("Feels like " + (int)(currentWeatherObject.current.feels_like)).ToString() + "°";
             }
+            #endregion
         }
 
     }
