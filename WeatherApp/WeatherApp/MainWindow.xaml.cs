@@ -18,7 +18,7 @@ namespace WeatherApp
     public partial class MainWindow : Window
     {
         //Todo: use location api to get location
-        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -53,7 +53,7 @@ namespace WeatherApp
             Application.Current.Shutdown();
         }
 
-        
+
         private async Task<List<String>> getWeatherJsonAsync()
         {
             HttpClient client = new HttpClient();
@@ -76,7 +76,7 @@ namespace WeatherApp
             {
                 MessageBox.Show("Null");
             }
-            
+
             if (rootObject != null)
             {
 
@@ -111,7 +111,7 @@ namespace WeatherApp
             }
             #endregion
 
-        #region Use this to get the current temperature and feels like
+            #region Use this to get the current temperature and feels like
             var currentWeatherObject = JsonConvert.DeserializeObject<CurrentWeatherModel.currentWeatherRoot>(weatherItems[1]);
             if (currentWeatherObject != null)
             {

@@ -63,7 +63,7 @@
                             Margin="0,10,20,0">
                     
                     <Label Name="location" 
-                           Content="Atlanta, Georgia"  
+                           Content="Kennesaw, Georgia"  
                            FontSize="20"
                            Style="{StaticResource weatherLabels}"
                            FontWeight="Light"
@@ -127,6 +127,7 @@
                 <StackPanel Orientation="Horizontal" 
                             HorizontalAlignment="Right" 
                             Grid.Column="1" Grid.Row="0">
+
                     <Button Style="{DynamicResource ButtonStyle1}" Content="―" 
                         Height="35" 
                         Width="30" 
@@ -138,20 +139,8 @@
                         BorderThickness="0"
                         Click="ButtonMinimize_Click"
                         x:Name="minimizeButton">
-
-
                     </Button>
-                    <!--<Button Content="☐" 
-                            Height="35" 
-                            Width="30" 
-                            Margin="0,0,0,0"
-                            FontWeight="Bold"
-                            Background="Transparent"
-                            Foreground="Gray"
-                            BorderThickness="0"
-                            Click="WindowSateButton_Click"
-                            />-->
-                    <!--Todo:Copy github windows button highlighting-->
+                    
                     <Button Content="X" 
                             Height="35" 
                             Width="30" 
