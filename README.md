@@ -1,5 +1,5 @@
 # Weather-App
-This app uses the Openweather API to display the weather in Kenensaw,Georgia. I am unable to pay for the API to get the specific location of every computer
+This app uses the Openweather API to display the weather in Kennesaw,Georgia. I am unable to pay for the API to get the specific location of every computer
 the application would run on so I just decided on setting it to Kennesaw,Georgia.
 The Weather Image on the left is responsive to the weather in the area so check the app periodically and you should see a new picture whenever
 the weather changes.
