@@ -11,6 +11,7 @@
     <None Remove="SlideImages\cloudy.jpg" />
     <None Remove="SlideImages\rain.jpg" />
     <None Remove="SlideImages\snowstorm.jpg" />
+    <None Remove="SlideImages\sunboy.jpg" />
     <None Remove="SlideImages\sunnyday.jpg" />
     <None Remove="SlideImages\thunderstorm.jpg" />
   </ItemGroup>
@@ -39,6 +40,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="SlideImages\snowstorm.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="SlideImages\sunboy.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="SlideImages\sunnyday.jpg">
